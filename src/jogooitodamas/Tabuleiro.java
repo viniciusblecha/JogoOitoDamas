@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Vinícius
  */
-public class Tabuleiro {
+public final class Tabuleiro {
     private int [][] tabuleiro;
     private Integer heuristica;
     private List<Tabuleiro> vizinhos;
@@ -34,6 +34,7 @@ public class Tabuleiro {
         this.vizinhos = tab.vizinhos;
     }
     
+    @Override
     public Tabuleiro clone(){
         return new Tabuleiro(this);
     }
@@ -41,7 +42,7 @@ public class Tabuleiro {
     
     
     public List<Tabuleiro> expandirVizinhos(){
-        List<Tabuleiro> vizinhos = new ArrayList<>();
+        List<Tabuleiro> viz = new ArrayList<>();
 
         
         for (int i = 0 ; i < 8 ; i++){
@@ -50,12 +51,12 @@ public class Tabuleiro {
                     
                     
                     for (int k = 0 ; k < 8 ; k++){
-                        int[][] tabuleiro = new GeraTabuleiro().clonaTabuleiro(this.tabuleiro);
+                        int[][] tab = new GeraTabuleiro().clonaTabuleiro(this.tabuleiro);
                        
-                        if (tabuleiro[i][k] != 1){
-                            tabuleiro[i][j] = 0;
-                            tabuleiro[i][k] = 1;
-                            vizinhos.add(new Tabuleiro(tabuleiro,this));
+                        if (tab[i][k] != 1){
+                            tab[i][j] = 0;
+                            tab[i][k] = 1;
+                            viz.add(new Tabuleiro(tab,this));
                         }         
                         
                     }
@@ -64,19 +65,19 @@ public class Tabuleiro {
         }
             
         
-        this.vizinhos = vizinhos;
-        return vizinhos;
+        this.vizinhos = viz;
+        return viz;
     }
     
     public int heuristica(){
-        int heuristica=0;
+        int heuristic=0;
         for (int i = 0; i < 8 ; i++){
             for (int j = 0 ; j < 8 ; j++){
                 if (tabuleiro[i][j] == 1){
                     // verifica se ataca a direita
                     for (int k = j+1 ; k < 8 ; k ++){
                         if (tabuleiro[i][k] == 1){
-                            heuristica++;
+                            heuristic++;
                             break;
                         }
                     }
@@ -84,7 +85,7 @@ public class Tabuleiro {
                     // verifica se ataca a esquerda
                     for (int k = j-1 ; k >= 0 ; k --){
                         if (tabuleiro[i][k] == 1){
-                            heuristica++;
+                            heuristic++;
                             break;
                         }
                     }
@@ -92,7 +93,7 @@ public class Tabuleiro {
                     // verifica se ataca para baixo
                     for (int k = i+1 ; k < 8 ; k ++){
                         if (tabuleiro[k][j] == 1){
-                            heuristica++;
+                            heuristic++;
                             break;
                         }
                     }
@@ -100,7 +101,7 @@ public class Tabuleiro {
                     // verifica se ataca para cima
                     for (int k = i-1 ; k >= 0 ; k --){
                         if (tabuleiro[k][j] == 1){
-                            heuristica++;
+                            heuristic++;
                             break;
                         }
                     }
@@ -108,7 +109,7 @@ public class Tabuleiro {
                     // verifica se ataca diagonal baixo/esquerda
                     for (int k = i+1,  l = j-1 ; k<8 && l>=0 ; k++,l--){
                         if (tabuleiro[k][l] == 1){
-                                heuristica++;
+                                heuristic++;
                                 break;
                         }
                     }
@@ -116,7 +117,7 @@ public class Tabuleiro {
                     // verifica se ataca diagonal cima/direita
                     for (int k = i-1,  l = j+1 ; k>=0 && l<8 ; k--,l++){
                         if (tabuleiro[k][l] == 1){
-                                heuristica++;
+                                heuristic++;
                                 break;
                         }
                     }
@@ -124,7 +125,7 @@ public class Tabuleiro {
                     // verifica se ataca diagonal baixo/direita
                     for (int k = i+1,  l = j+1 ; k<8 && l<8 ; k++,l++){
                         if (tabuleiro[k][l] == 1){
-                                heuristica++;
+                                heuristic++;
                                 break;
                         }
                     }
@@ -132,7 +133,7 @@ public class Tabuleiro {
                     // verifica se ataca diagonal cima/esquerda
                     for (int k = i-1,  l = j-1 ; k>=0 && l>=0 ; k--,l--){
                         if (tabuleiro[k][l] == 1){
-                                heuristica++;
+                                heuristic++;
                                 break;
                         }
                     }
@@ -140,8 +141,8 @@ public class Tabuleiro {
                 }                   
             }
         }
-        this.heuristica = heuristica;
-        return heuristica;
+        this.heuristica = heuristic;
+        return heuristic;
     }
 
     public int[][] getTabuleiro() {
@@ -196,7 +197,7 @@ public class Tabuleiro {
                 else
                     cor = 0;
                 for (int j = 0 ; j < 8 ; j++){
-                    sb.append(color[cor]+tabuleiro[i][j]+color[cor]+ " ");
+                    sb.append(color[cor]).append(tabuleiro[i][j]).append(color[cor]).append(" ");
                     if (cor == 0)
                         cor = 1;
                     else

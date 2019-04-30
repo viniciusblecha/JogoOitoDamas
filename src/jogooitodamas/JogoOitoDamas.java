@@ -21,7 +21,7 @@ public class JogoOitoDamas {
        
        int[][] tabuleiroInicial = gt.geraTabuleiroAleatorio();
        
-       List<Tabuleiro> solucao = null;
+       List<Tabuleiro> solucao;
        Tabuleiro problemaInicial = new Tabuleiro(tabuleiroInicial,null);
        Heuristica hc = new Heuristica(problemaInicial);
        solucao = hc.run();

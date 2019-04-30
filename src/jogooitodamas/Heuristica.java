@@ -7,7 +7,6 @@ package jogooitodamas;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -15,10 +14,10 @@ import java.util.List;
  * @author Vinícius
  */
 public class Heuristica {
-    private Tabuleiro tabuleiroInicial;
-    private List<Tabuleiro> solucao;
+    private final Tabuleiro tabuleiroInicial;
+    private final List<Tabuleiro> solucao;
     private int profundidade;
-    private int filhosGerados;
+    private final int filhosGerados;
     
     public Heuristica(Tabuleiro tabuleiroInicial){
         this.tabuleiroInicial = tabuleiroInicial;
@@ -51,10 +50,15 @@ public class Heuristica {
         }
         
         if (atual.isEhSolucao()){
+            //usei para testar se estava correto
+            //for (int i = fechados.size()-1 ; i >= 0 ; i--)
+            //    System.out.println(fechados.get(i).toString());
+            
             while (atual.getPai() != null){
                 this.solucao.add(atual);
                 atual = atual.getPai();
             }
+            
             this.solucao.add(this.tabuleiroInicial);
             this.profundidade = this.solucao.size();
             return this.solucao;

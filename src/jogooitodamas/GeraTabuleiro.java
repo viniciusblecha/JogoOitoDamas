@@ -30,9 +30,7 @@ public class GeraTabuleiro {
     public int [][] clonaTabuleiro(int[][] tabuleiro){
         int[][] tabAtual = new int [8][8];
          for (int i = 0 ; i < 8 ; i++){
-             for (int j = 0 ; j < 8 ; j++){
-                tabAtual[i][j] = tabuleiro[i][j];
-             }
+            System.arraycopy(tabuleiro[i], 0, tabAtual[i], 0, 8);
          }
         return tabAtual;
     }
