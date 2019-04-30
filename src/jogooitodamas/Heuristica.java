@@ -18,18 +18,20 @@ public class Heuristica {
     private Tabuleiro tabuleiroInicial;
     private List<Tabuleiro> solucao;
     private int profundidade;
+    private int filhosGerados;
     
     public Heuristica(Tabuleiro tabuleiroInicial){
         this.tabuleiroInicial = tabuleiroInicial;
         this.solucao = new ArrayList<>();
         this.profundidade = 0;
+        this.filhosGerados = 0;
     }
     
     public List<Tabuleiro> run(){
         List<Tabuleiro> fechados = new ArrayList<>();
         List<Tabuleiro> abertos = new ArrayList<>();
         Tabuleiro atual = this.tabuleiroInicial.clone();
-        atual.setHeuristica(atual.heuristica());
+        atual.setHeuristica(atual.getHeuristica());
         fechados.add(atual);
         
         while (!atual.isEhSolucao()){
@@ -69,12 +71,7 @@ public class Heuristica {
     }
     
     public void sort(List<Tabuleiro> tabuleiros){ 
-	Collections.sort(tabuleiros, new Comparator<Tabuleiro>() {
-            @Override
-            public int compare(Tabuleiro o1, Tabuleiro o2) {
-                return o1.getHeuristica().compareTo(o2.getHeuristica());
-            }
-        });
+	Collections.sort(tabuleiros, (Tabuleiro o1, Tabuleiro o2) -> o1.getHeuristica().compareTo(o2.getHeuristica()));
     }
     
 }

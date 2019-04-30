@@ -21,9 +21,19 @@ public class GeraTabuleiro {
         int[][] tabAtual = new int[8][8];
         
         for (int i = 0 ; i < 8 ; i ++){
-            tabAtual[new Random().nextInt(8)][i] = 1;
+            tabAtual[i][new Random().nextInt(8)] = 1;
         }
         
+        return tabAtual;
+    }
+    
+    public int [][] clonaTabuleiro(int[][] tabuleiro){
+        int[][] tabAtual = new int [8][8];
+         for (int i = 0 ; i < 8 ; i++){
+             for (int j = 0 ; j < 8 ; j++){
+                tabAtual[i][j] = tabuleiro[i][j];
+             }
+         }
         return tabAtual;
     }
 }

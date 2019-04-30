@@ -28,7 +28,6 @@ public class JogoOitoDamas {
        
        if (solucao == null){
             System.out.println("Não existe solução para esse problema");
-            System.out.println(tabuleiroInicial.toString());
         }
        
        try{
