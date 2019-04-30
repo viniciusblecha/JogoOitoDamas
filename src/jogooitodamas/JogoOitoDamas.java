@@ -32,9 +32,9 @@ public class JogoOitoDamas {
        
        try{
            if (solucao != null){
-               while(!solucao.isEmpty()){
-                   System.out.println(solucao.get(0).toString());
-                   solucao.remove(0);
+               for (int i = solucao.size()-1 ; i >= 0 ; i--){
+                   System.out.println(solucao.get(i).toString() +"Total de ataques : "+solucao.get(i).getHeuristica());
+                   solucao.remove(i);
                }
            }
        }catch(Exception e){

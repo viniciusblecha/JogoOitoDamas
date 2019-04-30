@@ -56,10 +56,6 @@ public class Tabuleiro {
                             tabuleiro[i][j] = 0;
                             tabuleiro[i][k] = 1;
                             vizinhos.add(new Tabuleiro(tabuleiro,this));
-                            System.out.println(new Tabuleiro(tabuleiro,this).toString());
-                            System.out.println(new Tabuleiro(tabuleiro,this).getHeuristica());
-                   
-                        
                         }         
                         
                     }
@@ -77,75 +73,67 @@ public class Tabuleiro {
         for (int i = 0; i < 8 ; i++){
             for (int j = 0 ; j < 8 ; j++){
                 if (tabuleiro[i][j] == 1){
-                    int aux = 0;
                     // verifica se ataca a direita
                     for (int k = j+1 ; k < 8 ; k ++){
-                        if (tabuleiro[i][k] == 1 && aux == 0){
+                        if (tabuleiro[i][k] == 1){
                             heuristica++;
-                            aux = 1;
+                            break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca a esquerda
                     for (int k = j-1 ; k >= 0 ; k --){
-                        if (tabuleiro[i][k] == 1 && aux == 0){
+                        if (tabuleiro[i][k] == 1){
                             heuristica++;
-                            aux = 1;
+                            break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca para baixo
                     for (int k = i+1 ; k < 8 ; k ++){
-                        if (tabuleiro[k][j] == 1 && aux == 0){
+                        if (tabuleiro[k][j] == 1){
                             heuristica++;
-                            aux = 1;
+                            break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca para cima
                     for (int k = i-1 ; k >= 0 ; k --){
-                        if (tabuleiro[k][j] == 1 && aux == 0){
+                        if (tabuleiro[k][j] == 1){
                             heuristica++;
-                            aux = 1;
+                            break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca diagonal baixo/esquerda
                     for (int k = i+1,  l = j-1 ; k<8 && l>=0 ; k++,l--){
-                        if (tabuleiro[k][l] == 1 && aux == 0){
+                        if (tabuleiro[k][l] == 1){
                                 heuristica++;
-                                aux = 1;
+                                break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca diagonal cima/direita
                     for (int k = i-1,  l = j+1 ; k>=0 && l<8 ; k--,l++){
-                        if (tabuleiro[k][l] == 1 && aux == 0){
+                        if (tabuleiro[k][l] == 1){
                                 heuristica++;
-                                aux = 1;
+                                break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca diagonal baixo/direita
                     for (int k = i+1,  l = j+1 ; k<8 && l<8 ; k++,l++){
-                        if (tabuleiro[k][l] == 1 && aux == 0){
+                        if (tabuleiro[k][l] == 1){
                                 heuristica++;
-                                aux = 1;
+                                break;
                         }
                     }
                     
-                    aux = 0;
                     // verifica se ataca diagonal cima/esquerda
                     for (int k = i-1,  l = j-1 ; k>=0 && l>=0 ; k--,l--){
-                        if (tabuleiro[k][l] == 1 && aux == 0){
+                        if (tabuleiro[k][l] == 1){
                                 heuristica++;
-                                aux = 1;
+                                break;
                         }
                     }
                    
