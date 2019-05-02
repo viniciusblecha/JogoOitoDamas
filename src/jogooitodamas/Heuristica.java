@@ -19,6 +19,7 @@ public class Heuristica {
     private final List<Tabuleiro> solucao;
     public int profundidade;
     public int filhosGerados;
+    public int filhosVisitados;
     
     public Heuristica(Tabuleiro tabuleiroInicial){
         this.tabuleiroInicial = tabuleiroInicial;
@@ -61,6 +62,7 @@ public class Heuristica {
             }
             
             this.solucao.add(this.tabuleiroInicial);
+            this.filhosVisitados = fechados.size();
             this.filhosGerados = abertos.size() + fechados.size();
             this.profundidade = this.solucao.size();
             return this.solucao;

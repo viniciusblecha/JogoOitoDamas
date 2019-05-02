@@ -21,8 +21,9 @@ public class JogoOitoDamas {
        GeraTabuleiro gt = new GeraTabuleiro();
        
        int[][] tabuleiroInicial = gt.geraTabuleiroAleatorio();
-       int profundidade=0;
-       int filhosGerados=0;
+       int profundidade;
+       int filhosGerados;
+       int filhosVisitados;
        
        List<Tabuleiro> solucao;
        Tabuleiro problemaInicial = new Tabuleiro(tabuleiroInicial,null);
@@ -31,6 +32,7 @@ public class JogoOitoDamas {
        
        filhosGerados = hc.filhosGerados;
        profundidade = hc.profundidade;
+       filhosVisitados = hc.filhosVisitados;
        
        if (solucao == null){
             System.out.println("Não existe solução para esse problema");
@@ -44,7 +46,7 @@ public class JogoOitoDamas {
                    solucao.remove(i);
                }
                
-               System.out.println("\n \n" + "Profundidade : " +profundidade+ "\n" + "Filhos Gerados : " +filhosGerados);
+               System.out.println("\n \n" + "Profundidade do problema : " +profundidade+ "\n"+ "Filhos visitados : " +filhosVisitados+ "\n" + "Filhos Gerados : " +filhosGerados);
            }
        }catch(Exception e){
            System.out.println(e.getMessage());
