@@ -9,7 +9,8 @@ import java.util.Random;
 
 /**
  *
- * @author Vinícius
+ * @author Vinicius Blecha
+ * @author Pedro Consulo
  */
 public class GeraTabuleiro {
     

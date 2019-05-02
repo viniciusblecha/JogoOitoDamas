@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Vinícius
+ * 
+ * @author Vinicius Blecha
+ * @author Pedro Consulo
  */
 public final class Tabuleiro {
     private int [][] tabuleiro;
@@ -189,6 +190,7 @@ public final class Tabuleiro {
     @Override
         public String toString(){
             int cor=0;
+            String corModificada = "\033[42m";
             String color[] = {"\033[41m","\033[47m"};
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 8 ; i++){
@@ -197,7 +199,12 @@ public final class Tabuleiro {
                 else
                     cor = 0;
                 for (int j = 0 ; j < 8 ; j++){
-                    sb.append(color[cor]).append(tabuleiro[i][j]).append(color[cor]).append(" ");
+                    if(tabuleiro[i][j] == 1)
+                        sb.append(corModificada).append(tabuleiro[i][j]).append(corModificada).append(" ");
+                    else
+                        sb.append(color[cor]).append(tabuleiro[i][j]).append(color[cor]).append(" ");
+                  
+                    
                     if (cor == 0)
                         cor = 1;
                     else

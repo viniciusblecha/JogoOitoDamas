@@ -8,8 +8,9 @@ package jogooitodamas;
 import java.util.List;
 
 /**
- *
- * @author Vinícius
+ * 
+ * @author Vinicius Blecha
+ * @author Pedro Consulo
  */
 public class JogoOitoDamas {
 
@@ -20,11 +21,16 @@ public class JogoOitoDamas {
        GeraTabuleiro gt = new GeraTabuleiro();
        
        int[][] tabuleiroInicial = gt.geraTabuleiroAleatorio();
+       int profundidade=0;
+       int filhosGerados=0;
        
        List<Tabuleiro> solucao;
        Tabuleiro problemaInicial = new Tabuleiro(tabuleiroInicial,null);
        Heuristica hc = new Heuristica(problemaInicial);
        solucao = hc.run();
+       
+       filhosGerados = hc.filhosGerados;
+       profundidade = hc.profundidade;
        
        if (solucao == null){
             System.out.println("Não existe solução para esse problema");
@@ -32,13 +38,16 @@ public class JogoOitoDamas {
        
        try{
            if (solucao != null){
+             
                for (int i = solucao.size()-1 ; i >= 0 ; i--){
                    System.out.println(solucao.get(i).toString() +"Total de ataques : "+solucao.get(i).getHeuristica());
                    solucao.remove(i);
                }
+               
+               System.out.println("\n \n" + "Profundidade : " +profundidade+ "\n" + "Filhos Gerados : " +filhosGerados);
            }
        }catch(Exception e){
-           System.out.println("Erorr");
+           System.out.println(e.getMessage());
        }
     }
     

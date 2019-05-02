@@ -10,14 +10,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
- * @author Vinícius
+ * 
+ * @author Vinicius Blecha
+ * @author Pedro Consulo
  */
 public class Heuristica {
     private final Tabuleiro tabuleiroInicial;
     private final List<Tabuleiro> solucao;
-    private int profundidade;
-    private final int filhosGerados;
+    public int profundidade;
+    public int filhosGerados;
     
     public Heuristica(Tabuleiro tabuleiroInicial){
         this.tabuleiroInicial = tabuleiroInicial;
@@ -50,7 +51,7 @@ public class Heuristica {
         }
         
         if (atual.isEhSolucao()){
-            //usei para testar se estava correto
+            //mostra todos os fechados
             //for (int i = fechados.size()-1 ; i >= 0 ; i--)
             //    System.out.println(fechados.get(i).toString());
             
@@ -60,6 +61,7 @@ public class Heuristica {
             }
             
             this.solucao.add(this.tabuleiroInicial);
+            this.filhosGerados = abertos.size() + fechados.size();
             this.profundidade = this.solucao.size();
             return this.solucao;
         }
